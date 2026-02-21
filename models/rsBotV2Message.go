@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"slices"
+	"strconv"
 	"time"
 )
 
@@ -50,6 +51,9 @@ func (i Info) ToMap() map[string]string {
 	if i.ChannelId != "" {
 		m[MChId] = i.ChannelId
 	}
+	if i.ChannelName != "" {
+		m[MChName] = i.ChannelName
+	}
 	if i.GuildId != "" {
 		m[MGuId] = i.GuildId
 	}
@@ -65,6 +69,21 @@ func (i Info) ToMap() map[string]string {
 	if i.UserAvatarUrl != "" {
 		m[MUsAvatarUrl] = i.UserAvatarUrl
 	}
+	if i.GameCorporation != "" {
+		m[MGC] = i.GameCorporation
+	}
+	if i.GameCorporationId != "" {
+		m[MGCId] = i.GameCorporationId
+	}
+	if i.Language != "" {
+		m[MLang] = i.Language
+	}
+	if i.ConfigParamId != 0 {
+		m[MConfPar] = strconv.Itoa(i.ConfigParamId)
+	}
+	if !i.CreatedAt.IsZero() {
+		m[MCreAt] = i.CreatedAt.Format(time.RFC3339)
+	}
 
 	// Handle Options field - convert map[string]bool to comma-separated string
 	if len(i.Options) > 0 {
@@ -78,7 +97,7 @@ func (i Info) ToMap() map[string]string {
 			}
 		}
 		if optionsStr != "" {
-			m["Options"] = optionsStr
+			m[MOptions] = optionsStr
 		}
 	}
 
@@ -89,11 +108,18 @@ const (
 	MType        = "TypeMessenger"
 	MMId         = "MessageId"
 	MChId        = "ChannelId"
+	MChName      = "ChannelName"
 	MGuId        = "GuildId"
 	MGuName      = "GuildName"
 	MGuAvatarUrl = "GuildAvatarUrl"
 	MAlias       = "Alias"
 	MUsAvatarUrl = "UserAvatarUrl"
+	MGC          = "GameCorporation"
+	MGCId        = "GameCorporationId"
+	MLang        = "Language"
+	MConfPar     = "ConfigParamId"
+	MCreAt       = "CreatedAt"
+	MOptions     = "Options"
 )
 const (
 	OptionReaction        = "Reaction"
