@@ -17,3 +17,14 @@ type IncomingMessage struct {
 	Type         string
 	Language     string
 }
+
+type DsMembersRoles struct {
+	Userid  string   `json:"userid"`
+	RolesId []string `json:"rolesId"`
+}
+
+// CorpRole represents a corporation role data structure
+type CorpRole struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}

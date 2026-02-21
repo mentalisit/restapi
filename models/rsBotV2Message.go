@@ -66,6 +66,22 @@ func (i Info) ToMap() map[string]string {
 		m[MUsAvatarUrl] = i.UserAvatarUrl
 	}
 
+	// Handle Options field - convert map[string]bool to comma-separated string
+	if len(i.Options) > 0 {
+		optionsStr := ""
+		for option, enabled := range i.Options {
+			if enabled {
+				if optionsStr != "" {
+					optionsStr += ","
+				}
+				optionsStr += option
+			}
+		}
+		if optionsStr != "" {
+			m["Options"] = optionsStr
+		}
+	}
+
 	return m
 }
 
@@ -94,6 +110,8 @@ const (
 	OptionElseTrue        = "ElseTrue"
 	OptionQueueAll        = "QueueAll"
 	OptionPlus            = "Plus"
+	OptionAutoHelp        = "AutoHelp"
+	OptionCleanChat       = "CleanChat"
 )
 
 type CorporationConfigV2 struct {
