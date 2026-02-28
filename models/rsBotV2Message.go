@@ -3,7 +3,6 @@ package models
 import (
 	"fmt"
 	"slices"
-	"strconv"
 	"time"
 )
 
@@ -63,42 +62,14 @@ func (i Info) ToMap() map[string]string {
 	if i.GuildAvatarUrl != "" {
 		m[MGuAvatarUrl] = i.GuildAvatarUrl
 	}
-	if i.Alias != "" {
-		m[MAlias] = i.Alias
-	}
 	if i.UserAvatarUrl != "" {
 		m[MUsAvatarUrl] = i.UserAvatarUrl
-	}
-	if i.GameCorporation != "" {
-		m[MGC] = i.GameCorporation
-	}
-	if i.GameCorporationId != "" {
-		m[MGCId] = i.GameCorporationId
 	}
 	if i.Language != "" {
 		m[MLang] = i.Language
 	}
-	if i.ConfigParamId != 0 {
-		m[MConfPar] = strconv.Itoa(i.ConfigParamId)
-	}
 	if !i.CreatedAt.IsZero() {
 		m[MCreAt] = i.CreatedAt.Format(time.RFC3339)
-	}
-
-	// Handle Options field - convert map[string]bool to comma-separated string
-	if len(i.Options) > 0 {
-		optionsStr := ""
-		for option, enabled := range i.Options {
-			if enabled {
-				if optionsStr != "" {
-					optionsStr += ","
-				}
-				optionsStr += option
-			}
-		}
-		if optionsStr != "" {
-			m[MOptions] = optionsStr
-		}
 	}
 
 	return m
@@ -150,21 +121,31 @@ type HelpMessage map[string]*Info
 type ChannelsMap map[string]*Info
 
 type Info struct {
-	TypeMessenger     string          `json:"TypeMessenger,omitempty"`
-	MessageId         string          `json:"MessageId,omitempty"`
-	ChannelId         string          `json:"ChannelId,omitempty"`
-	ChannelName       string          `json:"ChannelName,omitempty"`
-	GuildId           string          `json:"GuildId,omitempty"`
-	GuildName         string          `json:"GuildName,omitempty"`
-	GuildAvatarUrl    string          `json:"GuildAvatarUrl,omitempty"`
-	Alias             string          `json:"Alias,omitempty"`
-	UserAvatarUrl     string          `json:"UserAvatarUrl,omitempty"`
-	GameCorporation   string          `json:"GameCorporation,omitempty"`
-	GameCorporationId string          `json:"GameCorporationId,omitempty"`
-	Language          string          `json:"Language,omitempty"`
-	ConfigParamId     int             `json:"ConfigParamId,omitempty"`
-	CreatedAt         time.Time       `json:"CreatedAt,omitempty"`
-	Options           map[string]bool `json:"Options,omitempty"`
+	TypeMessenger  string        `json:"TypeMessenger,omitempty"`
+	MessageId      string        `json:"MessageId,omitempty"`
+	ChannelId      string        `json:"ChannelId,omitempty"`
+	ChannelName    string        `json:"ChannelName,omitempty"`
+	GuildId        string        `json:"GuildId,omitempty"`
+	GuildName      string        `json:"GuildName,omitempty"`
+	GuildAvatarUrl string        `json:"GuildAvatarUrl,omitempty"`
+	UserAvatarUrl  string        `json:"UserAvatarUrl,omitempty"`
+	Language       string        `json:"Language,omitempty"`
+	CreatedAt      time.Time     `json:"CreatedAt,omitempty"`
+	Game           *GameSettings `json:"Game,omitempty"`
+	Corp           *CorpSettings `json:"Corp,omitempty"`
+}
+type GameSettings struct {
+	GameCorporation   string `json:"GameCorporation,omitempty"`
+	GameCorporationId string `json:"GameCorporationId,omitempty"`
+	Alias             string `json:"Alias,omitempty"`
+	GameLevel         int    `json:"GameLevel,omitempty"`
+	GameXP            int    `json:"GameXP,omitempty"`
+}
+type CorpSettings struct {
+	AutoHelp       bool   `json:"AutoHelp,omitempty"`
+	DeleteMessages bool   `json:"DeleteMessages,omitempty"`
+	CustomText     bool   `json:"CustomText,omitempty"`
+	HelpText       string `json:"HelpText,omitempty"`
 }
 
 type CorpInfo struct {
