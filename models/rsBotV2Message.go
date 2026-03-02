@@ -158,5 +158,5 @@ type CorpInfo struct {
 	XP         int       `json:"xp" db:"xp"`
 	Webhook    bool      `json:"webhook" db:"webhook"`
 	DateEnded  time.Time `json:"date_ended" db:"date_ended"`
-	LastUpdate time.Time `json:"last_update" db:"last_update"`
+	LastWin    time.Time `json:"last_win" db:"last_win"`
 }
