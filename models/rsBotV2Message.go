@@ -114,6 +114,7 @@ const (
 type CorporationConfigV2 struct {
 	Uid         string
 	Channels    ChannelsMap
+	Bonuses     []GameSettings
 	HelpMessage HelpMessage
 }
 type HelpMessage map[string]*Info
@@ -142,10 +143,14 @@ type GameSettings struct {
 	GameXP            int    `json:"GameXP,omitempty"`
 }
 type CorpSettings struct {
-	AutoHelp       bool   `json:"AutoHelp,omitempty"`
-	DeleteMessages bool   `json:"DeleteMessages,omitempty"`
-	CustomText     bool   `json:"CustomText,omitempty"`
-	HelpText       string `json:"HelpText,omitempty"`
+	AutoHelp            bool     `json:"AutoHelp,omitempty"`
+	DeleteMessages      bool     `json:"DeleteMessages,omitempty"`
+	DeleteMessagesDelay int      `json:"DeleteMessagesDelay,omitempty"`
+	CustomText          bool     `json:"CustomText,omitempty"`
+	HelpText            string   `json:"HelpText,omitempty"`
+	DefaultNameRS       string   `json:"DefaultNameRS,omitempty"`
+	DefaultNameDRS      string   `json:"DefaultNameDRS,omitempty"`
+	MessengerInvites    []string `json:"MessengerInvites,omitempty"`
 }
 
 type CorpInfo struct {
