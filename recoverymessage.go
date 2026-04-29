@@ -37,7 +37,9 @@ func NewRecover(log *logger.Logger) *Recover {
 }
 
 func (r *Recover) SendBridgeAppRecover(m models.ToBridgeMessage) {
-	fmt.Printf("%s SendBridgeApp :%+v\n", time.Now().Format(time.DateTime), m)
+	fmt.Printf("%s SendBridgeApp Text:%s Sender:%s Tip:%s ChatId:%s\n",
+		time.Now().Format(time.DateTime), m.Text, m.Sender, m.Tip, m.ChatId)
+
 	err := r.bridge.SendToBridge(m)
 	if err != nil {
 		r.log.InfoStruct("SendBridgeApp err "+err.Error(), m)
