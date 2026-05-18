@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mentalisit/logger"
+	"github.com/mentalisit/conf/logger"
 	"github.com/mentalisit/restapi/bridge"
 	"github.com/mentalisit/restapi/compendium"
 	"github.com/mentalisit/restapi/models"

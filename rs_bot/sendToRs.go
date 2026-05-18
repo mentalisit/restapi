@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/mentalisit/logger"
+	"github.com/mentalisit/conf/logger"
 	"github.com/mentalisit/restapi/models"
 	"google.golang.org/grpc"
 )

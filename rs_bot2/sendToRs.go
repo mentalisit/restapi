@@ -6,7 +6,7 @@ import (
 
 	"github.com/mentalisit/restapi/models"
 
-	"github.com/mentalisit/logger"
+	"github.com/mentalisit/conf/logger"
 	"google.golang.org/grpc"
 )
 
