@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.2
 // - protoc             v5.29.0--rc2
-// source: bridge.proto
+// source: bridge2.proto
 
 package bridge2
 
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BridgeService_InboxBridge_FullMethodName = "/grpc_server.BridgeService/InboxBridge"
+	BridgeService_InboxBridge_FullMethodName = "/bridge2.BridgeService/InboxBridge"
 )
 
 // BridgeServiceClient is the client API for BridgeService service.
@@ -112,7 +112,7 @@ func _BridgeService_InboxBridge_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var BridgeService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc_server.BridgeService",
+	ServiceName: "bridge2.BridgeService",
 	HandlerType: (*BridgeServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -121,5 +121,5 @@ var BridgeService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "bridge.proto",
+	Metadata: "bridge2.proto",
 }

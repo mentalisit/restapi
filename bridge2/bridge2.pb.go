@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.12
 // 	protoc        v5.29.0--rc2
-// source: bridge.proto
+// source: bridge2.proto
 
 package bridge2
 
@@ -35,7 +35,7 @@ type FileInfo struct {
 
 func (x *FileInfo) Reset() {
 	*x = FileInfo{}
-	mi := &file_bridge_proto_msgTypes[0]
+	mi := &file_bridge2_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *FileInfo) String() string {
 func (*FileInfo) ProtoMessage() {}
 
 func (x *FileInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_bridge_proto_msgTypes[0]
+	mi := &file_bridge2_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *FileInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileInfo.ProtoReflect.Descriptor instead.
 func (*FileInfo) Descriptor() ([]byte, []int) {
-	return file_bridge_proto_rawDescGZIP(), []int{0}
+	return file_bridge2_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *FileInfo) GetName() string {
@@ -111,7 +111,7 @@ type BridgeMessageReply struct {
 
 func (x *BridgeMessageReply) Reset() {
 	*x = BridgeMessageReply{}
-	mi := &file_bridge_proto_msgTypes[1]
+	mi := &file_bridge2_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123,7 +123,7 @@ func (x *BridgeMessageReply) String() string {
 func (*BridgeMessageReply) ProtoMessage() {}
 
 func (x *BridgeMessageReply) ProtoReflect() protoreflect.Message {
-	mi := &file_bridge_proto_msgTypes[1]
+	mi := &file_bridge2_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -136,7 +136,7 @@ func (x *BridgeMessageReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BridgeMessageReply.ProtoReflect.Descriptor instead.
 func (*BridgeMessageReply) Descriptor() ([]byte, []int) {
-	return file_bridge_proto_rawDescGZIP(), []int{1}
+	return file_bridge2_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *BridgeMessageReply) GetTimeMessage() int64 {
@@ -189,7 +189,7 @@ type ToBridgeMessage struct {
 
 func (x *ToBridgeMessage) Reset() {
 	*x = ToBridgeMessage{}
-	mi := &file_bridge_proto_msgTypes[2]
+	mi := &file_bridge2_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -201,7 +201,7 @@ func (x *ToBridgeMessage) String() string {
 func (*ToBridgeMessage) ProtoMessage() {}
 
 func (x *ToBridgeMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_bridge_proto_msgTypes[2]
+	mi := &file_bridge2_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -214,7 +214,7 @@ func (x *ToBridgeMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ToBridgeMessage.ProtoReflect.Descriptor instead.
 func (*ToBridgeMessage) Descriptor() ([]byte, []int) {
-	return file_bridge_proto_rawDescGZIP(), []int{2}
+	return file_bridge2_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ToBridgeMessage) GetText() string {
@@ -317,7 +317,7 @@ type Empty struct {
 
 func (x *Empty) Reset() {
 	*x = Empty{}
-	mi := &file_bridge_proto_msgTypes[3]
+	mi := &file_bridge2_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -329,7 +329,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_bridge_proto_msgTypes[3]
+	mi := &file_bridge2_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -342,14 +342,14 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_bridge_proto_rawDescGZIP(), []int{3}
+	return file_bridge2_proto_rawDescGZIP(), []int{3}
 }
 
-var File_bridge_proto protoreflect.FileDescriptor
+var File_bridge2_proto protoreflect.FileDescriptor
 
-const file_bridge_proto_rawDesc = "" +
+const file_bridge2_proto_rawDesc = "" +
 	"\n" +
-	"\fbridge.proto\x12\vgrpc_server\"q\n" +
+	"\rbridge2.proto\x12\abridge2\"q\n" +
 	"\bFileInfo\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04data\x18\x02 \x01(\fR\x04data\x12\x10\n" +
@@ -360,7 +360,7 @@ const file_bridge_proto_rawDesc = "" +
 	"\ftime_message\x18\x01 \x01(\x03R\vtimeMessage\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\x12\x16\n" +
 	"\x06avatar\x18\x03 \x01(\tR\x06avatar\x12\x1b\n" +
-	"\tuser_name\x18\x04 \x01(\tR\buserName\"\xf8\x03\n" +
+	"\tuser_name\x18\x04 \x01(\tR\buserName\"\xec\x03\n" +
 	"\x0fToBridgeMessage\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\x12\x16\n" +
 	"\x06sender\x18\x02 \x01(\tR\x06sender\x12\x1a\n" +
@@ -369,46 +369,46 @@ const file_bridge_proto_rawDesc = "" +
 	"\achat_id\x18\x05 \x01(\tR\x06chatId\x12\x15\n" +
 	"\x06mes_id\x18\x06 \x01(\tR\x05mesId\x12\x19\n" +
 	"\bguild_id\x18\a \x01(\tR\aguildId\x12!\n" +
-	"\ftime_message\x18\b \x01(\x03R\vtimeMessage\x12+\n" +
-	"\x05extra\x18\t \x03(\v2\x15.grpc_server.FileInfoR\x05extra\x12\x16\n" +
+	"\ftime_message\x18\b \x01(\x03R\vtimeMessage\x12'\n" +
+	"\x05extra\x18\t \x03(\v2\x11.bridge2.FileInfoR\x05extra\x12\x16\n" +
 	"\x06avatar\x18\n" +
-	" \x01(\tR\x06avatar\x125\n" +
-	"\x05reply\x18\v \x01(\v2\x1f.grpc_server.BridgeMessageReplyR\x05reply\x12G\n" +
-	"\treply_map\x18\f \x03(\v2*.grpc_server.ToBridgeMessage.ReplyMapEntryR\breplyMap\x12\x1b\n" +
+	" \x01(\tR\x06avatar\x121\n" +
+	"\x05reply\x18\v \x01(\v2\x1b.bridge2.BridgeMessageReplyR\x05reply\x12C\n" +
+	"\treply_map\x18\f \x03(\v2&.bridge2.ToBridgeMessage.ReplyMapEntryR\breplyMap\x12\x1b\n" +
 	"\tconfig_id\x18\r \x01(\tR\bconfigId\x1a;\n" +
 	"\rReplyMapEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\a\n" +
-	"\x05Empty2P\n" +
-	"\rBridgeService\x12?\n" +
-	"\vInboxBridge\x12\x1c.grpc_server.ToBridgeMessage\x1a\x12.grpc_server.EmptyB\x1bZ\x19./grpc-server;grpc_serverb\x06proto3"
+	"\x05Empty2H\n" +
+	"\rBridgeService\x127\n" +
+	"\vInboxBridge\x12\x18.bridge2.ToBridgeMessage\x1a\x0e.bridge2.EmptyB/Z-github.com/mentalisit/restapi/bridge2;bridge2b\x06proto3"
 
 var (
-	file_bridge_proto_rawDescOnce sync.Once
-	file_bridge_proto_rawDescData []byte
+	file_bridge2_proto_rawDescOnce sync.Once
+	file_bridge2_proto_rawDescData []byte
 )
 
-func file_bridge_proto_rawDescGZIP() []byte {
-	file_bridge_proto_rawDescOnce.Do(func() {
-		file_bridge_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_bridge_proto_rawDesc), len(file_bridge_proto_rawDesc)))
+func file_bridge2_proto_rawDescGZIP() []byte {
+	file_bridge2_proto_rawDescOnce.Do(func() {
+		file_bridge2_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_bridge2_proto_rawDesc), len(file_bridge2_proto_rawDesc)))
 	})
-	return file_bridge_proto_rawDescData
+	return file_bridge2_proto_rawDescData
 }
 
-var file_bridge_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_bridge_proto_goTypes = []any{
-	(*FileInfo)(nil),           // 0: grpc_server.FileInfo
-	(*BridgeMessageReply)(nil), // 1: grpc_server.BridgeMessageReply
-	(*ToBridgeMessage)(nil),    // 2: grpc_server.ToBridgeMessage
-	(*Empty)(nil),              // 3: grpc_server.Empty
-	nil,                        // 4: grpc_server.ToBridgeMessage.ReplyMapEntry
+var file_bridge2_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_bridge2_proto_goTypes = []any{
+	(*FileInfo)(nil),           // 0: bridge2.FileInfo
+	(*BridgeMessageReply)(nil), // 1: bridge2.BridgeMessageReply
+	(*ToBridgeMessage)(nil),    // 2: bridge2.ToBridgeMessage
+	(*Empty)(nil),              // 3: bridge2.Empty
+	nil,                        // 4: bridge2.ToBridgeMessage.ReplyMapEntry
 }
-var file_bridge_proto_depIdxs = []int32{
-	0, // 0: grpc_server.ToBridgeMessage.extra:type_name -> grpc_server.FileInfo
-	1, // 1: grpc_server.ToBridgeMessage.reply:type_name -> grpc_server.BridgeMessageReply
-	4, // 2: grpc_server.ToBridgeMessage.reply_map:type_name -> grpc_server.ToBridgeMessage.ReplyMapEntry
-	2, // 3: grpc_server.BridgeService.InboxBridge:input_type -> grpc_server.ToBridgeMessage
-	3, // 4: grpc_server.BridgeService.InboxBridge:output_type -> grpc_server.Empty
+var file_bridge2_proto_depIdxs = []int32{
+	0, // 0: bridge2.ToBridgeMessage.extra:type_name -> bridge2.FileInfo
+	1, // 1: bridge2.ToBridgeMessage.reply:type_name -> bridge2.BridgeMessageReply
+	4, // 2: bridge2.ToBridgeMessage.reply_map:type_name -> bridge2.ToBridgeMessage.ReplyMapEntry
+	2, // 3: bridge2.BridgeService.InboxBridge:input_type -> bridge2.ToBridgeMessage
+	3, // 4: bridge2.BridgeService.InboxBridge:output_type -> bridge2.Empty
 	4, // [4:5] is the sub-list for method output_type
 	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -416,26 +416,26 @@ var file_bridge_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_bridge_proto_init() }
-func file_bridge_proto_init() {
-	if File_bridge_proto != nil {
+func init() { file_bridge2_proto_init() }
+func file_bridge2_proto_init() {
+	if File_bridge2_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bridge_proto_rawDesc), len(file_bridge_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bridge2_proto_rawDesc), len(file_bridge2_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_bridge_proto_goTypes,
-		DependencyIndexes: file_bridge_proto_depIdxs,
-		MessageInfos:      file_bridge_proto_msgTypes,
+		GoTypes:           file_bridge2_proto_goTypes,
+		DependencyIndexes: file_bridge2_proto_depIdxs,
+		MessageInfos:      file_bridge2_proto_msgTypes,
 	}.Build()
-	File_bridge_proto = out.File
-	file_bridge_proto_goTypes = nil
-	file_bridge_proto_depIdxs = nil
+	File_bridge2_proto = out.File
+	file_bridge2_proto_goTypes = nil
+	file_bridge2_proto_depIdxs = nil
 }
