@@ -6,6 +6,7 @@ import (
 
 	"github.com/mentalisit/conf/logger"
 	"github.com/mentalisit/restapi/bridge"
+	"github.com/mentalisit/restapi/bridge2"
 	"github.com/mentalisit/restapi/compendium"
 	"github.com/mentalisit/restapi/models"
 	"github.com/mentalisit/restapi/rs_bot"
@@ -15,10 +16,12 @@ import (
 type Recover struct {
 	log               *logger.Logger
 	bridgeMessage     []models.ToBridgeMessage
+	bridge2Message    []models.ToBridgeMessage
 	compendiumMessage []models.IncomingMessage
 	rsBotMessage      []models.InMessage
 	rsBotV2Message    []models.InMessageV2
 	bridge            *bridge.Client
+	bridge2           *bridge2.Client
 	rs                *rs_bot.Client
 	rs2               *rs_bot2.Client
 	compendiumNew     *compendium.Client
@@ -28,6 +31,7 @@ func NewRecover(log *logger.Logger) *Recover {
 	r := &Recover{
 		log:           log,
 		bridge:        bridge.NewClient(log),
+		bridge2:       bridge2.NewClient(log),
 		rs:            rs_bot.NewClient(log),
 		rs2:           rs_bot2.NewClient(log),
 		compendiumNew: compendium.NewClient(log),
@@ -44,6 +48,16 @@ func (r *Recover) SendBridgeAppRecover(m models.ToBridgeMessage) {
 	if err != nil {
 		r.log.InfoStruct("SendBridgeApp err "+err.Error(), m)
 		r.bridgeMessage = append(r.bridgeMessage, m)
+	}
+}
+func (r *Recover) SendBridge2AppRecover(m models.ToBridgeMessage) {
+	fmt.Printf("%s SendBridge2App Text:%s Sender:%s Tip:%s ChatId:%s\n",
+		time.Now().Format(time.DateTime), m.Text, m.Sender, m.Tip, m.ChatId)
+
+	err := r.bridge2.SendToBridge(m)
+	if err != nil {
+		r.log.InfoStruct("SendBridge2App err "+err.Error(), m)
+		r.bridge2Message = append(r.bridge2Message, m)
 	}
 }
 
@@ -129,11 +143,30 @@ func (r *Recover) trySend() {
 			}
 		}
 
+		// Проверка и отправка сообщений в bridge2
+		if len(r.bridge2Message) > 0 {
+			for i := 0; i < len(r.bridge2Message); i++ {
+				message := r.bridge2Message[i]
+				err := r.bridge2.SendToBridge(message)
+				if err == nil {
+					// Если отправка успешна, удаляем сообщение из слайса
+					r.bridge2Message = append(r.bridge2Message[:i], r.bridge2Message[i+1:]...)
+					i-- // Сдвигаем индекс назад
+				}
+				time.Sleep(1 * time.Second)
+			}
+		}
+
 		time.Sleep(10 * time.Second)
 	}
 }
 func (r *Recover) Close() {
 	err := r.bridge.Close()
+	if err != nil {
+		r.log.ErrorErr(err)
+		return
+	}
+	err = r.bridge2.Close()
 	if err != nil {
 		r.log.ErrorErr(err)
 		return

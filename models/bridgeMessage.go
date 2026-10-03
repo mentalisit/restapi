@@ -30,6 +30,7 @@ type BridgeMessageReply struct {
 }
 type Bridge2Config struct {
 	Id                int                         `json:"id"`
+	ConfigId          string                      `json:"configId"` // uuidV7
 	NameRelay         string                      `json:"nameRelay"`
 	HostRelay         string                      `json:"hostRelay"`
 	Role              []string                    `json:"role"`
