@@ -67,8 +67,8 @@ func (c *Client) SendToBridge(i models.ToBridgeMessage) error {
 			UserName:    i.Reply.UserName,
 		}
 	}
-	if i.Config != nil && i.Config.ConfigId != "" {
-		in.ConfigId = i.Config.ConfigId
+	if i.Config != nil && i.Config.UUID != "" {
+		in.ConfigId = i.Config.UUID
 	}
 
 	_, err := c.client.InboxBridge(context.Background(), &in)

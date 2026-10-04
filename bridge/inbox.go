@@ -68,13 +68,13 @@ func (c *Client) SendToBridge(i models.ToBridgeMessage) error {
 		}
 	}
 
-	if i.Config != nil && i.Config.HostRelay != "" {
+	if i.Config != nil && i.Config.Host != "" {
 		conf := &Bridge2Config{
 			Id:                int32(i.Config.Id),
-			NameRelay:         i.Config.NameRelay,
-			HostRelay:         i.Config.HostRelay,
-			Role:              i.Config.Role,
-			ForbiddenPrefixes: i.Config.ForbiddenPrefixes,
+			NameRelay:         i.Config.Options.NameRelay,
+			HostRelay:         i.Config.Host,
+			Role:              i.Config.Options.Role,
+			ForbiddenPrefixes: i.Config.Options.ForbiddenPrefixes,
 			Channel:           make(map[string]*Bridge2Config_Bridge2ConfigsList),
 		}
 		if len(i.Config.Channel) > 0 {
