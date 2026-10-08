@@ -14,7 +14,7 @@ type InMessageV2 struct {
 	UserId      string
 	NameMention string
 	Messenger   Info
-	Config      CorporationConfigV2
+	Config      CorporationConfig
 	Options     Options
 }
 
@@ -91,6 +91,8 @@ const (
 	MConfPar     = "ConfigParamId"
 	MCreAt       = "CreatedAt"
 	MOptions     = "Options"
+	MAutoHelp    = "AutoHelp"
+	MCleanChat   = "CleanChat"
 )
 const (
 	OptionReaction        = "Reaction"
@@ -111,7 +113,7 @@ const (
 	OptionCleanChat       = "CleanChat"
 )
 
-type CorporationConfigV2 struct {
+type CorporationConfig struct {
 	Uid         string
 	Channels    ChannelsMap
 	Bonuses     []GameSettings

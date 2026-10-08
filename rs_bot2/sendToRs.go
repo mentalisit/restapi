@@ -4,9 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/mentalisit/restapi/models"
-
 	"github.com/mentalisit/conf/logger"
+	"github.com/mentalisit/restapi/models"
 	"google.golang.org/grpc"
 )
 
@@ -44,8 +43,8 @@ func (c *Client) SendToRs2(i models.InMessageV2) error {
 		UserId:      i.UserId,
 		NameMention: i.NameMention,
 		Messenger:   i.Messenger.ToMap(),
-		Config: &CorporationConfigV2{
-			Name: i.Config.Uid,
+		Config: &CorporationConfig{
+			Uid: i.Config.Uid,
 		},
 		Options: i.Options,
 	}
