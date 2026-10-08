@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package rs2;
+option go_package = "github.com/mentalisit/restapi/rs_bot2;rs_bot2";
+
+// Единый сервис RS-бота v2.
+service LogicService {
+  rpc LogicRs2(InMessageV2) returns (Empty);
+  rpc OtherQueue(other) returns (Empty);
+}
+
+message other {
+  repeated string UsersIds = 1;
+}
+
+message Empty {}
+
+message InMessageV2 {
+  string Text = 1;
+  string Tip = 2;
+  string NameNick = 3;
+  string UserName = 4;
+  string UserId = 5;
+  string NameMention = 6;
+  map<string, string> Messenger = 7;
+  CorporationConfig Config = 8;
+  repeated string Options = 9;
+}
+
+message CorporationConfig {
+  string Uid = 1;
+  map<string, ChannelInfo> Channels = 2;
+  repeated GameSettings Bonuses = 3;
+  map<string, HelpMessageInfo> HelpMessage = 4;
+}
+
+message ChannelInfo {
+  map<string, string> Data = 1;
+}
+
+message HelpMessageInfo {
+  map<string, string> Data = 1;
+}
+
+message GameSettings {
+  string GameCorporation = 1;
+  string GameCorporationId = 2;
+  string Alias = 3;
+  int32 GameLevel = 4;
+  int32 GameXP = 5;
+}
