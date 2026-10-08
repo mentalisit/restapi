@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/mentalisit/conf/logger"
-	"github.com/mentalisit/restapi/bridge"
 	"github.com/mentalisit/restapi/bridge2"
 	"github.com/mentalisit/restapi/compendium"
 	"github.com/mentalisit/restapi/models"
@@ -14,11 +13,9 @@ import (
 
 type Recover struct {
 	log               *logger.Logger
-	bridgeMessage     []models.ToBridgeMessage
 	bridge2Message    []models.ToBridgeMessage
 	compendiumMessage []models.IncomingMessage
 	rsBotV2Message    []models.InMessageV2
-	bridge            *bridge.Client
 	bridge2           *bridge2.Client
 	rs                *rs_bot2.Client
 	compendiumNew     *compendium.Client
@@ -27,7 +24,6 @@ type Recover struct {
 func NewRecover(log *logger.Logger) *Recover {
 	r := &Recover{
 		log:           log,
-		bridge:        bridge.NewClient(log),
 		bridge2:       bridge2.NewClient(log),
 		rs:            rs_bot2.NewClient(log),
 		compendiumNew: compendium.NewClient(log),
@@ -36,16 +32,6 @@ func NewRecover(log *logger.Logger) *Recover {
 	return r
 }
 
-func (r *Recover) SendBridgeAppRecover(m models.ToBridgeMessage) {
-	fmt.Printf("%s SendBridgeApp Text:%s Sender:%s Tip:%s ChatId:%s\n",
-		time.Now().Format(time.DateTime), m.Text, m.Sender, m.Tip, m.ChatId)
-
-	err := r.bridge.SendToBridge(m)
-	if err != nil {
-		r.log.InfoStruct("SendBridgeApp err "+err.Error(), m)
-		r.bridgeMessage = append(r.bridgeMessage, m)
-	}
-}
 func (r *Recover) SendBridge2AppRecover(m models.ToBridgeMessage) {
 	fmt.Printf("%s SendBridge2App Text:%s Sender:%s Tip:%s ChatId:%s\n",
 		time.Now().Format(time.DateTime), m.Text, m.Sender, m.Tip, m.ChatId)
@@ -101,18 +87,6 @@ func (r *Recover) trySend() {
 			}
 		}
 
-		if len(r.bridgeMessage) > 0 {
-			for i := 0; i < len(r.bridgeMessage); i++ {
-				message := r.bridgeMessage[i]
-				err := r.bridge.SendToBridge(message)
-				if err == nil {
-					r.bridgeMessage = append(r.bridgeMessage[:i], r.bridgeMessage[i+1:]...)
-					i--
-				}
-				time.Sleep(1 * time.Second)
-			}
-		}
-
 		if len(r.bridge2Message) > 0 {
 			for i := 0; i < len(r.bridge2Message); i++ {
 				message := r.bridge2Message[i]
@@ -129,7 +103,6 @@ func (r *Recover) trySend() {
 	}
 }
 func (r *Recover) Close() {
-	_ = r.bridge.Close()
 	_ = r.bridge2.Close()
 	_ = r.rs.Close()
 	_ = r.compendiumNew.Close()
